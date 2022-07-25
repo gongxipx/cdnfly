@@ -64,12 +64,12 @@ echo "server {
 			rewrite  ^(.*)$  /index.php/$1  last;   break;
 		}
 	}
-}" > /etc/nginx/conf.d/auth.cdnfly.cn.conf
+}" > /etc/nginx/conf.d/${domain}
 
 
 #下载web文件
-mkdir /usr/share/nginx/html/auth.cdnfly.cn
-cd /usr/share/nginx/html/auth.cdnfly.cn
+mkdir /usr/share/nginx/html/${domain}
+cd /usr/share/nginx/html/${domain}
 wget https://raw.githubusercontent.com/gongxipx/cdnfly/main/cdn/api.php
 wget https://raw.githubusercontent.com/gongxipx/cdnfly/main/cdn/config.php
 wget https://raw.githubusercontent.com/gongxipx/cdnfly/main/cdn/index.php
