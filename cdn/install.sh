@@ -40,8 +40,8 @@ chmod +x /usr/bin/php #文件给与执行权限
 groupadd -r www
 useradd -r -g www www
 
-sed -i "s/user = apache/user = www/g" /etc/php-fpm.d/www.conf
-sed -i "s/group = apache/group = www/g" /etc/php-fpm.d/www.conf
+sed -i "s/user = apache/user = www/g" /etc/opt/remi/php74/php-fpm.d/www.conf
+sed -i "s/group = apache/group = www/g" /etc/opt/remi/php74/php-fpm.d/www.conf
 
 systemctl start php74-php-fpm
 systemctl enable php74-php-fpm
@@ -52,14 +52,12 @@ server {
 	listen 80;
 	server_name auth.suses.net;
         root /usr/share/nginx/html/auth.suses.net;
-        index index.html index.htm index.php;
+        index index.php index.html index.htm;
         location ~ [^/]\.php(/|$) {
-        try_files $uri =404;
-        root /usr/share/nginx/html/auth.suses.net;
-        fastcgi_pass 127.0.0.1:9000;
-        fastcgi_index index.php;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include fastcgi_params;
+		fastcgi_pass 127.0.0.1:9000;
+		fastcgi_index index.php;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		include fastcgi_params;
 	}
 	location / {
 		if (!-e $request_filename){
