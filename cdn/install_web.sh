@@ -1,24 +1,15 @@
 #/bin/bash
-
 #本脚本只适用于Centos7.x系列
+
+set -o errexit
+
 #安装nginx函数
 install_nginx(){
 	yum install yum-utils -y
-	echo '[nginx-stable]
-	name=nginx stable repo
-	baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
-	gpgcheck=1
-	enabled=1
-	gpgkey=https://nginx.org/keys/nginx_signing.key
-	module_hotfixes=true
-
-	[nginx-mainline]
-	name=nginx mainline repo
-	baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
-	gpgcheck=1
-	enabled=0
-	gpgkey=https://nginx.org/keys/nginx_signing.key
-	module_hotfixes=true' >/etc/yum.repos.d/nginx.repo
+	#下载nginx源
+	cd  /etc/yum.repos.d
+	rm -rf nginx.repo
+	wget https://raw.githubusercontent.com/gongxipx/cdnfly/main/cdn/nginx.repo
 	yum-config-manager --enable nginx-mainline
 	yum install nginx -y 
 	#设置nginx开机启动
