@@ -12,10 +12,6 @@ install_nginx(){
 	wget https://raw.githubusercontent.com/gongxipx/cdnfly/main/cdn/nginx.repo
 	yum-config-manager --enable nginx-mainline
 	yum install nginx -y 
-	#设置nginx开机启动
-	systemctl enable nginx
-	#开启nginx 服务
-	systemctl start nginx
 	##开放防火墙端口
 	firewall-cmd --zone=public --add-port=22/tcp --permanent
 	firewall-cmd --zone=public --add-port=80/tcp --permanent
@@ -39,6 +35,10 @@ install_nginx(){
 			}
 		}
 	}" > /etc/nginx/conf.d/${domain}.conf
+	#设置nginx开机启动
+	systemctl enable nginx
+	#开启nginx 服务
+	systemctl start nginx
 }
 
 #安装php74函数
