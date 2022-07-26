@@ -60,7 +60,7 @@ install_php(){
 
 #下载web文件函数
 dowload_webfile(){
-	mkdir /usr/share/nginx/html/${domain}
+	mkdir -p /usr/share/nginx/html/${domain}
 	cd /usr/share/nginx/html/${domain}
 	wget https://raw.githubusercontent.com/gongxipx/cdnfly/main/cdn/api.php
 	wget https://raw.githubusercontent.com/gongxipx/cdnfly/main/cdn/config.php
@@ -73,6 +73,6 @@ dowload_webfile(){
 
 #函数执行模块
 read -p "请输入cdnfly认证服务器绑定的域名:" domain
-install_nginx
 install_php
 dowload_webfile
+install_nginx
