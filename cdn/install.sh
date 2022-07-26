@@ -57,7 +57,7 @@ install_php(){
 	useradd -r -g www www
 	#安装php7.4服务
 	yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm 
-	yum install -y php74-php-fpm php74-php-cli php74-php-bcmath php74-php-gd php74-php-json  php74-php-mbstring php74-php-mcrypt php74-php-mysqlnd php74-php-opcache php74-php-pdo php74-php-pecl-crypto php74-php-pecl-mcrypt php74-php-pecl-geoip php74-php-recode php74-php-snmp php74-php-soap php74-php-xml php74-php-imagick php74-php-pecl-zip
+	yum install -y php74 php74-php-fpm
 	#启动php74
 	systemctl start php74-php-fpm
 	#添加php74开机启动
